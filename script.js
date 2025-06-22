@@ -192,6 +192,14 @@ async function main() {
             currentsong.pause();
             play.src = "images/play.svg"
         }
+        const activeLi = document.querySelector(".songlist li.active-song .playnow img");
+    if (activeLi) {
+        if (currentsong.paused) {
+            activeLi.src = "images/play.svg";
+        } else {
+            activeLi.src = "images/pause.svg";
+        }
+    }
     })
     //listen for time update event
     currentsong.addEventListener("timeupdate", () => {
