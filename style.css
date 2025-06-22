@@ -157,7 +157,7 @@ body {
 }
 
 .signupbtn {
-    background-color: rgb(34 34 34);
+    background-color:transparent;
     color: rgb(156, 148, 148);
     font-weight: bold;
     border: none;
@@ -197,8 +197,9 @@ body {
     border-radius: 10px;
     width: 90%;
     padding: 12px;
-    width: 70vw;
+    width: 68vw;
     min-height: 40px;
+    z-index: 999;
 }
 
 .songbuttons {
@@ -332,7 +333,7 @@ body {
         position: absolute;
         left: -130%;
         transition: all .3s;
-        z-index: 1;
+        z-index: 1000;
         width: 373px;
         background-color: black;
         padding: 0;
@@ -351,6 +352,7 @@ body {
         right: 31px;
         top: 25px;
         width: 29px;
+        
     }
 
     .timevol {
@@ -366,7 +368,8 @@ body {
     }
 
     .playbar {
-        width: calc(100vw - 75px); 
+        width: calc(100vw - 75px);
+        min-height: 40px;  
     }
 
     .seekbar {
@@ -375,6 +378,10 @@ body {
 
     .hamburger {
         display: block;
+        max-height: 70px;
+    }
+    .meh2,.meh{
+        display:none;
     }
 
     .right {
@@ -396,8 +403,12 @@ body {
 
     .abovebar {
         flex-direction: column;
-        gap: 23px;
+        gap: 10px;
         align-items: center;
+    }
+    .header{
+        padding: 7px;
+        max-height: 80px;
     }
 
     /* .cardcontainer {
@@ -408,6 +419,7 @@ body {
 
     .playbar{
         right: 25px;
+        z-index: 999;
     }
 }
 
@@ -417,7 +429,7 @@ body {
     }
 
     .header>* {
-        padding: 2px;
+        padding: 1px;
     }
 
     .buttons>* {
@@ -426,6 +438,7 @@ body {
 
     .header{
         padding: 7px;
+        max-height: 50px;
     }
 
     .spotify-playlist h1 {
@@ -438,9 +451,191 @@ body {
 
     .left{ 
         width: 100vw;
+        z-index: 1000;
     }
+}
 
- 
 
-    
+
+
+/* ==================== SETTINGS PANEL ==================== */
+#settings-btn {
+  cursor: pointer;
+  padding: 10px;
+  background: none;
+  border: none;
+  color: var(--text, #fff);
+  font-size: 16px;
+}
+
+.settings-panel {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background: var(--bg, #252525);
+  color: var(--text, #fff);
+  border: 1px solid rgba(200,200,200,0.2);
+  padding: 10px;
+  border-radius: 8px;
+  display: none;
+  flex-direction: column;
+  min-width: 180px;
+  z-index: 999;
+}
+
+.themes-title {
+  background: none;
+  border: none;
+  color: var(--text, #fff);
+  cursor: pointer;
+  padding: 0.5rem 0;
+  text-align: left;
+  font-weight: bold;
+}
+
+.themes-options {
+  display: none;
+  flex-direction: column;
+  margin-top: 8px;
+  padding-left: 10px;
+}
+
+.themes-options.open {
+  display: flex;
+}
+
+.themes-options button {
+  padding: 0.5rem;
+  background: var(--secondary-bg, #444);
+  color: var(--text, #fff);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.themes-options button:hover {
+  background: orange;
+  color: var(--bg, #252525);
+}
+
+/* ==================== THEMES ==================== */
+body.light-mode {
+  --bg: #fafafa;
+  --text: #222;
+  --secondary-bg: #eaeaea;
+  --accent: #ff8c00;
+  --card-bg: #ddd6d6;
+  --playbar-bg: #ffffff;
+  --border-color: #ddd6d6;
+
+  background: var(--bg);
+  color: var(--text);
+}
+
+body.light-mode .header {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+body.light-mode .card {
+  background-color: var(--card-bg);
+  color: var(--text);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .card:hover {
+  background-color: var(--secondary-bg);
+}
+
+body.light-mode .playbar {
+  background: var(--card-bg);
+  color: var(--text);
+  border-top: 1px solid var(--border-color);
+  filter: none;
+}
+
+body.light-mode .settings-panel {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border-color);
+}
+body.light-mode .left {
+  background-color: var(--bg); /* Light background */
+  color: var(--text);          /* Darker text */
+  border-right: 1px solid var(--border-color); /* subtle separator */
+}
+
+body.light-mode .library {
+  background-color: var(--bg); /* Keep it light */
+  color: var(--text);
+}
+
+body.light-mode .songlist ul li {
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text);
+}
+
+body.light-mode .songlist ul li:hover {
+  background: var(--secondary-bg); /* Light hover */
+}
+
+body.light-mode .songlist .info {
+  color: var(--text); /* Ensure song titles are dark enough */
+}
+body.light-mode .home ul li {
+  color: var(--text);             /* Darker text for Home/Search links */
+}
+
+body.light-mode .home ul li img {
+  filter: invert(0);             /* Remove inversion so icons look dark */
+  opacity: 0.8;
+}
+
+body.light-mode .heading {
+  color: var(--text);             /* Darker text for "Your Library" title */
+}
+
+body.light-mode .heading img {
+  filter: invert(0);             /* Keep the library icon dark */
+  opacity: 0.8;
+}
+
+/* Spotify logo adjustments in light mode */
+body.light-mode img[src="images/logo.svg"] {
+  filter: invert(0);        /* Keep the logo its original color */
+  opacity: 0.8;             /* Optional: reduce opacity slightly for a subtle look */
+}
+
+body.dark-mode {
+  --bg: #000000;
+  --text: #fff;
+  --secondary-bg: #444;
+  background: var(--bg);
+  color: var(--text);
+}
+
+
+/* Light mode: make all sidebar and control icons dark */
+body.light-mode .home img,
+body.light-mode .library img,
+body.light-mode .footer img,
+body.light-mode .play img,
+body.light-mode .hamburger img,
+body.light-mode .close img,
+body.light-mode .songlist img {
+  filter: invert(0); /* Original color */
+  opacity: 0.9;      /* Slight opacity to blend nicely */
+}
+
+/* Dark mode: invert all sidebar and control icons to suit dark background */
+body.dark-mode .home img,
+body.dark-mode .library img,
+body.dark-mode .footer img,
+body.dark-mode .play img,
+body.dark-mode .hamburger img,
+body.dark-mode .close img,
+body.dark-mode .songlist img {
+  filter: invert(1); /* Makes them light */
 }

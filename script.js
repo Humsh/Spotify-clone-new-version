@@ -44,7 +44,7 @@ async function getsongs(folder) {
                    <img class="invert" width="34" src="images/music.svg" alt="">
                    <div class="info">
                        <div>${song.replaceAll("%20", " ")}</div>
-                       <div>Harry</div>
+                       
                    </div>
                    <div class="playnow">
                        <span>Play Now</span>
@@ -261,6 +261,32 @@ async function main() {
         }
 
     })
+    // Toggle Settings panel
+document.getElementById('settings-btn').addEventListener('click', () => {
+  const panel = document.getElementById('settings-panel');
+  panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// Toggle Themes options
+document.getElementById('themes-btn').addEventListener('click', () => {
+  document.getElementById('themes-options').classList.toggle('open');
+});
+
+// Change theme
+document.querySelectorAll('.themes-options button').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const theme = btn.getAttribute('data-theme'); // light or dark
+    document.body.classList.remove('light-mode', 'dark-mode');
+    document.body.classList.add(`${theme}-mode`);
+    localStorage.setItem('theme', theme); // save
+    document.getElementById('settings-panel').style.display = 'none';
+  });
+});
+
+// Restore theme from localStorage
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.body.classList.add(`${savedTheme}-mode`);
+
 }
 main()
 
